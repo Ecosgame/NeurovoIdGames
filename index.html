@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neurovoid Games</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0e0e1a, #1f1f2e);
+      color: white;
+    }
+
+    a {
+      color: #f1caff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #94e9ef;
+    }
+
+    a:active {
+      color: rgb(153, 210, 234);
+    }
+
+    header {
+      background: #111;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header img {
+      max-height: 80px;
+    }
+
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #bf77ee;
+    }
+
+    #contenido {
+      flex: 1;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #ffccff;
+    }
+
+    .ecos {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Imágenes con tamaño fijo y recorte para igual tamaño */
+    .ecos img {
+      width: 280px;
+      height: 180px;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px #888;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* Imagen del medio más grande y sin recorte */
+    .ecos img:nth-child(2) {
+      width: 300px;
+      height: auto;
+      object-fit: contain;
+      background: none;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .button {
+      background: #cf9bf2;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background: #f3e0ff;
+    }
+
+    /* Modal styles */
+    #videoModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #videoModal.active {
+      display: flex;
+    }
+
+    #videoContainer {
+      position: relative;
+      width: 80%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      background: black;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 20px #bf77ee;
+    }
+
+    #videoContainer video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #closeBtn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(255,255,255,0.9);
+      color: #000;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      line-height: 24px;
+      text-align: center;
+      user-select: none;
+      transition: background 0.3s;
+      z-index: 10;
+      padding: 0;
+    }
+
+    #closeBtn:hover {
+      background: rgba(255,255,255,1);
+    }
+  </style>
+</head>
+<body>
+  <div id="contenido">
+    <header>
+      <img src="logo.png.png" alt="Neurovoid Games Logo" />
+    </header>
+
+    <nav>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#ecos">Ecos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section id="nosotros">
+      <h1>¿Quiénes Somos?</h1>
+      <p>Somos <strong>Neurovoid Games</strong>, un estudio independiente apasionado por crear experiencias inmersivas, narrativas profundas y mundos únicos. Combinamos diseño, arte y tecnología para crear videojuegos que dejen huella.</p>
+    </section>
+
+    <section id="ecos">
+      <h2>Nuestro Juego: ECOS</h2>
+      <div class="ecos">
+        <img src="game.png" alt="Screenshot 1" />
+        <img src="alma.png.jpeg" alt="Screenshot 2" />
+        <img src="game2.png" alt="Screenshot 3" />
+      </div>
+      <p><strong>ECOS</strong> es una aventura atmosférica que explora los recuerdos, la pérdida y la conexión entre mundos paralelos. Acompaña a la protagonista Alma en un viaje introspectivo a través de paisajes surrealistas y misteriosos ecos del pasado.</p>
+      
+      <button class="button" id="openVideoBtn" style="margin-top: 2rem;">Ver Demo</button>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>¿Quieres saber más o colaborar con nosotros?</p>
+      <ul>
+        <li>Email: neurovoidgames@gmail.com</li>
+        <li>X (Twitter): @NeurovoidGames</li>
+        <li>Instagram: 
+          <a href="https://www.instagram.com/neurovoid_games?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@neurovoid_games</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div id="videoModal">
+    <div id="videoContainer">
+      <button id="closeBtn" aria-label="Cerrar video">&times;</button>
+      <video controls>
+        <source src="ecosvideo.mp4" type="video/mp4" />
+        Tu navegador no soporta el video.
+      </video>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Neurovoid Games. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const openBtn = document.getElementById('openVideoBtn');
+    const modal = document.getElementById('videoModal');
+    const closeBtn = document.getElementById('closeBtn');
+    const video = modal.querySelector('video');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      video.currentTime = 0;
+      video.play();
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      video.pause();
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        video.pause();
+        modal.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
